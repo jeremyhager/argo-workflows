@@ -39,6 +39,7 @@ async fn test_create_workflow() {
             prefix: Some(String::from("BearerToken")),
             key: env::var("ARGO_TOKEN").expect("ARGO_TOKEN not set"),
         }),
+        base_path: String::from("http://127.0.0.1:2746"),
         ..Default::default()
     };
 
