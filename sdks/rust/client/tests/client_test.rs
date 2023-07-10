@@ -34,6 +34,8 @@ async fn test_create_workflow() {
 
     let manifest = Workflow::new(metadata, spec);
 
+    println!("ARGO_TOKEN: {}", env::var("ARGO_TOKEN").expect("ARGO_TOKEN not set"));
+
     let config = configuration::Configuration {
         api_key: Some(configuration::ApiKey {
             prefix: Some(String::from("BearerToken")),
@@ -55,7 +57,10 @@ async fn test_create_workflow() {
 
     match workflow_service_api::create_workflow(&config, create_workflow_params).await {
         Ok(_) => (),
-        Err(err) => panic!("{:#?}", &err),
+        Err(err) => {
+            println!("Could not create workflow. config:\n{:#?}", &config);
+            panic!("{:#?}", &err);
+        }
     }
 
     match workflow_service_api::list_workflows(&config, list_workflow_params).await {
