@@ -55,7 +55,7 @@ async fn test_create_workflow() {
 
     match workflow_service_api::create_workflow(&config, create_workflow_params).await {
         Ok(_) => (),
-        Err(err) => panic!("{:#?}", &err.to_string()),
+        Err(err) => panic!("{:#?}", &err),
     }
 
     match workflow_service_api::list_workflows(&config, list_workflow_params).await {
