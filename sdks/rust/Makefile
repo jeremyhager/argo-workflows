@@ -61,4 +61,4 @@ install:
 
 test:
 	../../hack/access-token.sh init
-	env ARGO_TOKEN="`../../hack/access-token.sh get`" cargo test --manifest-path ./client/Cargo.toml
+	env ARGO_TOKEN="`../../hack/access-token.sh get`" cargo test --manifest-path ./client/Cargo.toml -- --nocapture
